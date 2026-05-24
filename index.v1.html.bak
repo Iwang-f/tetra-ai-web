@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TETRA — Produksi Video AI untuk Brand Indonesia</title>
+    <meta name="description"
+        content="TETRA menghadirkan produksi video komersil bertenaga AI untuk UMKM F&B, Fashion & Retail Indonesia. Hemat 80% biaya, hasil Full HD sinematik.">
+    <meta property="og:title" content="TETRA — Video AI untuk Brand Indonesia">
+    <meta property="og:description" content="Produksi video komersil AI. Hemat 80% biaya, kualitas sinematik Full HD.">
+    <meta property="og:type" content="website">
+
+    <!-- Mobile / PWA -->
+    <meta name="theme-color" content="#0c1e3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader"><div class="loader-content"><span class="loader-logo">TETRA</span><div class="loader-bar"><div class="loader-bar-fill"></div></div></div></div>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Blueprint Background Grid -->
+    <div class="blueprint-bg"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">TETRA</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">Tentang</a>
+                <a href="#showcase">Karya</a>
+                <a href="#process">Proses</a>
+                <a href="#contact" class="btn btn-nav">Hubungi Kami</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="container hero-content gsap-hero-reveal">
+            <div class="hero-eyebrow">
+                AI-Powered Video Production
+            </div>
+
+            <h1 class="hero-title">
+                Buat Video Komersil<br>
+                <span class="hero-title-line-2">
+                    yang <span class="text-gradient-flow">Memukau</span>
+                </span>
+            </h1>
+
+            <p class="hero-desc">
+                Kami menggunakan teknologi AI generatif terbaru untuk memproduksi video iklan berkualitas sinematik —
+                dengan biaya <strong>80% lebih hemat</strong> dan turnaround <strong>dalam hitungan hari</strong>.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary btn-xl">
+                    <span>Mulai Proyek</span>
+                </a>
+                <a href="#showcase" class="btn btn-ghost btn-xl">
+                    <span>Lihat Portfolio</span>
+                </a>
+            </div>
+            <p class="hero-cta-micro">Konsultasi 100% Gratis · Tanpa Komitmen · Respon dalam 24 Jam</p>
+        </div>
+
+        <!-- Stats ticker -->
+        <div class="hero-stats-bar gsap-hero-reveal">
+            <div class="container">
+                <div class="stats-ticker">
+                    <div class="ticker-item">
+                        <div class="ticker-value">
+                            <span class="ticker-number" data-count="80">0</span><span class="ticker-suffix">%</span>
+                        </div>
+                        <span class="ticker-label">Hemat Biaya</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="ticker-value">
+                            <span class="ticker-number" data-count="7">0</span><span class="ticker-suffix"> Hari</span>
+                        </div>
+                        <span class="ticker-label">Turnaround</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="ticker-value">
+                            <span class="ticker-number">4K</span><span class="ticker-suffix"> AI</span>
+                        </div>
+                        <span class="ticker-label">Resolusi HD</span>
+                    </div>
+                    <div class="ticker-item">
+                        <div class="ticker-value">
+                            <span class="ticker-number" data-count="89">0</span><span class="ticker-suffix">%</span>
+                        </div>
+                        <span class="ticker-label">Brand Butuh Video</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Tools Trust Bar -->
+    <section class="trust-bar gsap-fade-up">
+        <div class="container">
+            <div class="trust-label-row">
+                <p class="trust-label">Dibuat dengan teknologi AI terdepan</p>
+                <span class="trust-label-stat">10+ brand Indonesia sudah pakai</span>
+            </div>
+            <div class="trust-logos">
+                <div class="trust-logo-item">Google Veo 3.1</div>
+                <div class="trust-logo-item">Kling AI</div>
+                <div class="trust-logo-item">Seedance 2.0</div>
+                <div class="trust-logo-item">ElevenLabs</div>
+                <div class="trust-logo-item">Suno AI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Solution Section -->
+    <section class="section section-about" id="about">
+        <div class="container">
+            <div class="solution-banner gsap-fade-up">
+                <div class="solution-content">
+                    <span class="section-label">Tentang TETRA</span>
+                    <h3>Video Berkualitas Agensi Besar, Tanpa Biaya Besar.</h3>
+                    <p>Dengan pipeline AI terdepan, kami menghasilkan video komersil berkualitas sinematik — tanpa studio fisik, tanpa biaya talent mahal, tanpa menunggu berminggu-minggu. Cukup brief Anda, biarkan AI dan tim kreatif kami bekerja.</p>
+                </div>
+                <div class="solution-features">
+                    <div class="feature-chip">Tanpa Studio Fisik</div>
+                    <div class="feature-chip">Tanpa Biaya Talent</div>
+                    <div class="feature-chip">Voice-over AI Premium</div>
+                    <div class="feature-chip">Optimasi TikTok/Reels</div>
+                    <div class="feature-chip">Hemat 80% Biaya</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa TETRA? Feature Bento Grid -->
+    <section class="section section-features" id="features">
+        <div class="container">
+            <div class="section-header gsap-fade-up features-header">
+                <span class="section-label">Kenapa TETRA?</span>
+                <h2 class="section-title-lg">Keunggulan yang <span class="text-accent">Membedakan</span></h2>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card gsap-fade-up">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    </div>
+                    <h3>Tanpa Studio Fisik</h3>
+                    <p>Semua visual dihasilkan AI generatif — tanpa sewa lokasi, set, lighting, atau peralatan produksi konvensional.</p>
+                </div>
+                <div class="bento-card gsap-fade-up">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Hemat 80% Biaya</h3>
+                    <p>Biaya produksi jauh lebih terjangkau dibanding agensi konvensional — tanpa mengorbankan kualitas visual.</p>
+                </div>
+                <div class="bento-card gsap-fade-up">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Turnaround 5–7 Hari</h3>
+                    <p>Dari brief ke video final dalam hitungan hari, bukan minggu. Cocok untuk kampanye yang butuh kecepatan.</p>
+                </div>
+                <div class="bento-card gsap-fade-up">
+                    <div class="bento-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>Optimasi Multi-Platform</h3>
+                    <p>Video disesuaikan format TikTok, Instagram Reels, YouTube Shorts — siap tayang di semua platform.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="section section-showcase" id="showcase">
+        <div class="container">
+            <div class="section-header gsap-fade-up showcase-header">
+                <span class="section-label">Karya Kami</span>
+                <h2 class="section-title-lg showcase-title">Hasil Nyata, Bukan Janji.</h2>
+                <p class="section-desc showcase-desc">Contoh video komersil yang diproduksi dengan pipeline AI TETRA.</p>
+            </div>
+
+            <!-- Featured Video -->
+            <div class="video-featured gsap-video-card">
+                <div class="video-player">
+                    <iframe src="https://drive.google.com/file/d/1eVtVDagpVjFqkCO-XlD7D9DQ8VUdJgtZ/preview"
+                        allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-meta">
+                    <div class="video-meta-left">
+                        <h3>Klout x Enhanced</h3>
+                        <span class="video-tag">Brand Collaboration</span>
+                    </div>
+                    <div class="video-meta-right">
+                        <span class="video-detail">1080p • AI Generative</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="video-trio">
+                <div class="video-card-rich gsap-video-card">
+                    <div class="video-player video-player-vertical">
+                        <iframe src="https://drive.google.com/file/d/19JUOMMnBFKYXe2lNng1xgYRhy5OUyIf5/preview"
+                            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-meta">
+                        <div class="video-meta-left">
+                            <h3>Rova x Base</h3>
+                            <span class="video-tag">Cosmetics Ad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card-rich gsap-video-card">
+                    <div class="video-player video-player-vertical">
+                        <iframe src="https://drive.google.com/file/d/1yJ6HZc7f_QaGAdREz9U8FoFIe3eE-5II/preview"
+                            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-meta">
+                        <div class="video-meta-left">
+                            <h3>Chocodot</h3>
+                            <span class="video-tag">F&B Snack</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card-rich gsap-video-card">
+                    <div class="video-player video-player-vertical">
+                        <iframe src="https://drive.google.com/file/d/1i_JkVnh2p4sb-p_VJhJwmnfqSl0GWBc1/preview"
+                            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-meta">
+                        <div class="video-meta-left">
+                            <h3>Ekspedisi Patriot</h3>
+                            <span class="video-tag">Kementerian Transmigrasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="section section-proof gsap-fade-up" id="proof">
+        <div class="container">
+            <span class="section-label">Hasil Nyata</span>
+            <h2 class="proof-headline">Dipercaya Brand <span class="gradient-text">Indonesia</span></h2>
+            <p class="proof-subtitle">Kualitas sinematik • Turnaround cepat • Klien puas</p>
+
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-stat-number"><span class="ticker-number" data-count="10">0</span>+</div>
+                    <div class="proof-stat-label">Video Diproduksi</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-stat-number"><span class="ticker-number" data-count="5">0</span>+</div>
+                    <div class="proof-stat-label">Brand Dilayani</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-stat-number"><span class="ticker-number" data-count="80">0</span>%</div>
+                    <div class="proof-stat-label">Hemat Biaya</div>
+                </div>
+            </div>
+
+            <div class="proof-quotes">
+                <div class="proof-quote gsap-fade-up">
+                    <span class="proof-quote-badge">Brand Video</span>
+                    <p>"Dulu kami perlu studio, kamera, dan waktu berminggu-minggu — hasilnya pun sering tidak sesuai ekspektasi. Dengan TETRA, video selesai dalam hitungan hari dan hasilnya benar-benar seperti produksi profesional."</p>
+                    <span class="proof-quote-author">— Klien F&B Brand</span>
+                </div>
+                <div class="proof-quote gsap-fade-up">
+                    <span class="proof-quote-badge">Social Media Ads</span>
+                    <p>"Sebelumnya biaya produksi video iklan terasa mustahil untuk UMKM kami. Sekarang bisa punya konten berkualitas sinematik tanpa sewa studio sama sekali. Ini benar-benar game changer."</p>
+                    <span class="proof-quote-author">— Klien Fashion Brand</span>
+                </div>
+                <div class="proof-quote gsap-fade-up">
+                    <span class="proof-quote-badge">Product Showcase</span>
+                    <p>"Ekspektasi kami tinggi tapi anggaran terbatas — TETRA melampaui keduanya. Turnaround-nya cepat, kualitasnya di atas dugaan kami, dan pasti akan kami pakai lagi."</p>
+                    <span class="proof-quote-author">— Klien Retail</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section section-process" id="process">
+        <div class="container">
+            <div class="section-header gsap-fade-up process-header">
+                <span class="section-label">Blueprint Produksi</span>
+                <h2 class="section-title-lg">Dari Ide ke Video<br>dalam <span class="text-accent">4 Langkah</span></h2>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step gsap-fade-up">
+                    <div class="step-header">
+                        <div class="step-number">01</div>
+                        <span class="step-timing">Hari 1</span>
+                    </div>
+                    <div class="step-content">
+                        <h4>Brief & Konsultasi</h4>
+                        <p>Ceritakan produk, audiens, dan tujuan kampanye Anda. Kami analisis kebutuhan visual.</p>
+                    </div>
+                </div>
+                <div class="process-step gsap-fade-up" style="animation-delay: 100ms;">
+                    <div class="step-header">
+                        <div class="step-number">02</div>
+                        <span class="step-timing">Hari 1–2</span>
+                    </div>
+                    <div class="step-content">
+                        <h4>Script & Storyboard</h4>
+                        <p>Tim kreatif merancang naskah menggunakan data audiens — diperkuat AI.</p>
+                    </div>
+                </div>
+                <div class="process-step gsap-fade-up" style="animation-delay: 200ms;">
+                    <div class="step-header">
+                        <div class="step-number">03</div>
+                        <span class="step-timing">Hari 2–5</span>
+                    </div>
+                    <div class="step-content">
+                        <h4>Produksi AI</h4>
+                        <p>Video diproduksi menggunakan AI video generator terkini untuk menghasilkan output HD sinematik.</p>
+                    </div>
+                </div>
+                <div class="process-step gsap-fade-up" style="animation-delay: 300ms;">
+                    <div class="step-header">
+                        <div class="step-number">04</div>
+                        <span class="step-timing">Hari 6–7</span>
+                    </div>
+                    <div class="step-content">
+                        <h4>Review & Deliver</h4>
+                        <p>Revisi sesuai feedback, dan finalisasi video yang siap tayang di media sosial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="section section-faq" id="faq">
+        <div class="container">
+            <div class="section-header gsap-fade-up faq-header">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title-lg">Pertanyaan <span class="text-accent">Umum</span></h2>
+            </div>
+            <div class="faq-list gsap-fade-up">
+                <div class="faq-item">
+                    <button class="faq-question">Apa itu AI Video Production?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>AI Video Production menggunakan teknologi kecerdasan buatan seperti Google Veo dan Kling AI untuk menghasilkan video berkualitas sinematik tanpa perlu studio fisik, kamera, atau talent. Hasilnya setara produksi profesional dengan biaya jauh lebih hemat.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Berapa lama proses produksi?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Rata-rata 5-7 hari kerja tergantung kompleksitas proyek. Untuk project sederhana bisa lebih cepat, sementara project berskala besar menyesuaikan scope yang disepakati.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Apakah hasilnya terlihat seperti AI?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Tidak. Kami menggunakan pipeline AI terbaru yang menghasilkan visual sangat realistis. Ditambah sentuhan kreatif tim kami, hasilnya natural dan profesional. Lihat portfolio kami untuk buktinya.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Bisa request revisi?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Tentu! Setiap proyek sudah termasuk sesi revisi agar hasil akhir sesuai dengan ekspektasi Anda. Kami pastikan Anda puas sebelum video dikirimkan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Apakah cocok untuk UMKM?<span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Sangat cocok! TETRA dirancang agar bisnis dari skala apapun bisa punya video iklan berkualitas sinematik tanpa perlu anggaran produksi yang besar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-cta" id="contact">
+        <div class="container">
+            <div class="cta-content gsap-fade-up">
+                <span class="section-label">Mulai Sekarang</span>
+                <h2 class="section-title-xl">Siap Bikin Video <span class="text-accent">Viral?</span></h2>
+                <p class="cta-desc">Konsultasi gratis. Kami akan berikan ide konsep visual untuk brand Anda.</p>
+                <div class="cta-actions">
+                    <a href="https://wa.me/6285710004692" target="_blank" rel="noopener" class="btn btn-primary btn-xl"><span>Chat via WhatsApp</span></a>
+                </div>
+                <div class="cta-stat-anchor">
+                    <span class="cta-stat-number">80%</span>
+                    <span class="cta-stat-text">lebih hemat dari biaya produksi video konvensional</span>
+                </div>
+                <div class="cta-trust-signals">
+                    <div class="trust-signal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00D084" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Gratis Konsultasi</div>
+                    <div class="trust-signal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00D084" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Tanpa Komitmen</div>
+                    <div class="trust-signal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00D084" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ide Visual Gratis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="logo-text">TETRA</span>
+                    </div>
+                    <p class="footer-tagline">Techno-Efficient Targeted Realistic Ads</p>
+                    <p class="footer-desc">Produksi video komersil bertenaga AI untuk brand Indonesia. Kualitas sinematik, biaya terjangkau.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Navigasi</h4>
+                    <div class="footer-col-links">
+                        <a href="#about">Tentang</a>
+                        <a href="#showcase">Portfolio</a>
+                        <a href="#process">Proses</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Kontak</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Layanan</h4>
+                    <div class="footer-col-links">
+                        <a href="#showcase">Video Iklan AI</a>
+                        <a href="#showcase">Brand Video</a>
+                        <a href="#showcase">Social Media Ads</a>
+                        <a href="#showcase">Product Showcase</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Hubungi Kami</h4>
+                    <div class="footer-col-links">
+                        <a href="https://wa.me/6285710004692" target="_blank" rel="noopener">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TETRA Productions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky WhatsApp FAB -->
+    <a href="https://wa.me/6285710004692" target="_blank" rel="noopener" class="wa-fab" id="waFab" aria-label="Chat WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff"><path d="M16.01 2.64C8.63 2.64 2.65 8.6 2.65 15.96c0 2.35.62 4.64 1.8 6.66L2.5 29.36l7.01-1.84a13.28 13.28 0 006.5 1.7c7.37 0 13.35-5.96 13.35-13.32S23.38 2.64 16.01 2.64zm0 24.38c-2.1 0-4.15-.57-5.94-1.65l-.43-.25-4.42 1.16 1.18-4.32-.28-.44A11.04 11.04 0 014.9 15.96c0-6.11 4.98-11.07 11.11-11.07 6.13 0 11.11 4.96 11.11 11.07 0 6.11-4.98 11.06-11.11 11.06zm6.1-8.29c-.33-.17-1.98-1-2.29-1.11-.31-.11-.53-.17-.76.17-.22.33-.87 1.11-1.07 1.33-.2.22-.39.25-.73.08-.33-.17-1.41-.52-2.69-1.65-1-.89-1.67-1.99-1.87-2.33-.2-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.17-.2.22-.33.33-.56.11-.22.06-.42-.03-.58-.08-.17-.76-1.83-1.04-2.5-.27-.66-.55-.57-.76-.58h-.65c-.22 0-.58.08-.89.42-.31.33-1.17 1.14-1.17 2.78s1.2 3.22 1.36 3.44c.17.22 2.36 3.6 5.72 5.05.8.35 1.42.55 1.91.71.8.25 1.53.22 2.11.13.64-.1 1.98-.81 2.26-1.59.28-.78.28-1.45.2-1.59-.09-.14-.31-.22-.65-.39z"/></svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

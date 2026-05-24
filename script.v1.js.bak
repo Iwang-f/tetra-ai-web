@@ -1,0 +1,174 @@
+(function () {
+    'use strict';
+
+    // ─── Page Loader ───
+    var loader = document.getElementById('pageLoader');
+    window.addEventListener('load', function () {
+        setTimeout(function () { loader.classList.add('loaded'); }, 1600);
+    });
+
+    // ─── Dark/Light Mode Toggle ───
+    var themeToggle = document.getElementById('themeToggle');
+    var savedTheme = localStorage.getItem('tetra-theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            var current = document.documentElement.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('tetra-theme', next);
+        });
+    }
+
+    // ─── Scroll Progress Bar ───
+    var scrollProgress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', function () {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress.style.width = (window.scrollY / h * 100) + '%';
+    }, { passive: true });
+
+    // ─── Navbar scroll effect ───
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ─── Hamburger Menu ───
+    var hamburger = document.getElementById('hamburger');
+    var navLinks = document.getElementById('navLinks');
+
+    // Create overlay for mobile menu backdrop
+    var navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay';
+    document.body.appendChild(navOverlay);
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function () {
+            var isOpen = navLinks.classList.contains('active');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                hamburger.classList.add('active');
+                navLinks.classList.add('active');
+                navOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        navLinks.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', closeMenu);
+        });
+        navOverlay.addEventListener('click', closeMenu);
+    }
+
+    // ─── Smooth scroll ───
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // ─── FAQ Accordion ───
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var item = this.parentElement;
+            var wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item.active').forEach(function (i) { i.classList.remove('active'); });
+            if (!wasActive) item.classList.add('active');
+        });
+    });
+
+    // ─── Number Counter ───
+    document.querySelectorAll('.ticker-number[data-count]').forEach(function (el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var obs = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) {
+                var start = null;
+                var step = function (ts) {
+                    if (!start) start = ts;
+                    var p = Math.min((ts - start) / 2000, 1);
+                    var ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+                    el.innerText = Math.floor(ease * target);
+                    if (p < 1) requestAnimationFrame(step); else el.innerText = target;
+                };
+                requestAnimationFrame(step);
+                obs.unobserve(el);
+            }
+        }, { threshold: 0.5 });
+        obs.observe(el);
+    });
+
+    // ─── GSAP Animations ───
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        let mm = gsap.matchMedia();
+
+        // Desktop & Tablet Animations
+        mm.add("(min-width: 769px)", () => {
+            gsap.to(".blueprint-bg", { yPercent: 20, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+            gsap.from(".gsap-hero-reveal", { y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 1.8 });
+
+            gsap.utils.toArray('.gsap-fade-up').forEach(function (el) {
+                gsap.from(el, { y: 60, opacity: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" } });
+            });
+
+            // Bento cards staggered entrance
+            gsap.utils.toArray('.bento-card').forEach(function (el, i) {
+                gsap.from(el, { y: 80, opacity: 0, scale: 0.95, duration: 0.8, delay: i * 0.1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+            });
+
+            // Process steps staggered
+            gsap.utils.toArray('.process-step').forEach(function (el, i) {
+                gsap.from(el, { y: 60, opacity: 0, duration: 0.7, delay: i * 0.15, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } });
+            });
+
+            // Proof quotes staggered
+            gsap.utils.toArray('.proof-quote').forEach(function (el, i) {
+                gsap.from(el, { y: 40, opacity: 0, duration: 0.6, delay: i * 0.12, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 88%" } });
+            });
+
+            gsap.utils.toArray('.gsap-video-card').forEach(function (el) {
+                gsap.from(el, { y: 80, scale: 0.95, opacity: 0, duration: 1, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 80%" } });
+                gsap.to(el, { y: -30, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: 1 } });
+            });
+        });
+
+        // Mobile Animations (Simplified to prevent missing elements)
+        mm.add("(max-width: 768px)", () => {
+            gsap.from(".gsap-hero-reveal", { y: 30, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", delay: 1.5 });
+
+            // Simpler fade up without large y offsets. Use top 95% to ensure it triggers earlier.
+            gsap.utils.toArray('.gsap-fade-up, .bento-card, .process-step, .proof-quote, .gsap-video-card').forEach(function (el) {
+                gsap.from(el, { y: 30, opacity: 0, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 95%", toggleActions: "play none none none" } });
+            });
+        });
+
+        // 3D tilt effect on CTA (Only on desktop/non-touch to prevent mobile glitches)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            document.querySelectorAll('.cta-content').forEach(function (el) {
+                el.addEventListener('mousemove', function (e) {
+                    var r = el.getBoundingClientRect();
+                    gsap.to(el, { rotationY: ((e.clientX - r.left) / r.width - 0.5) * 6, rotationX: -((e.clientY - r.top) / r.height - 0.5) * 6, transformPerspective: 1200, ease: "power1.out", duration: 0.5 });
+                });
+                el.addEventListener('mouseleave', function () {
+                    gsap.to(el, { rotationY: 0, rotationX: 0, ease: "elastic.out(1, 0.3)", duration: 1.5 });
+                });
+            });
+        }
+        
+        // Refresh ScrollTrigger after images load to fix positioning
+        window.addEventListener('load', () => {
+            setTimeout(() => { ScrollTrigger.refresh(); }, 500);
+        });
+    }
+})();

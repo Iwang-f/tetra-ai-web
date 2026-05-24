@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:maven.com)",
+      "WebFetch(domain:pictory.ai)",
+      "WebFetch(domain:www.invideo.io)",
+      "WebFetch(domain:waymark.com)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
