@@ -87,6 +87,7 @@
         videoModal.classList.remove('active');
         videoModal.setAttribute('aria-hidden', 'true');
         body.style.overflow = '';
+        videoModalFrame.classList.remove('video-modal-frame-portrait');
         videoModalFrame.replaceChildren();
         lastVideoTrigger?.focus();
         lastVideoTrigger = null;
@@ -95,20 +96,39 @@
     document.querySelectorAll('.video-embed').forEach((embed) => {
         const trigger = embed.querySelector('.video-placeholder');
         if (!trigger) return;
+        if (!embed.dataset.src) {
+            trigger.disabled = true;
+            return;
+        }
 
         trigger.addEventListener('click', () => {
+            const isLocalVideo = /\.mp4(?:$|\?)/i.test(embed.dataset.src);
+            const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+            const isPortraitVideo = embed.dataset.ratio === 'portrait';
+            if (isMobileViewport && !isPortraitVideo && !isLocalVideo) {
+                window.open(embed.dataset.src, '_blank', 'noopener');
+                return;
+            }
+
             if (!videoModal || !videoModalFrame) return;
             lastVideoTrigger = trigger;
 
-            const iframe = document.createElement('iframe');
-            iframe.src = embed.dataset.src;
-            iframe.title = embed.dataset.title || 'Video TETRA';
-            iframe.loading = 'lazy';
-            iframe.allow = 'autoplay; encrypted-media; fullscreen';
-            iframe.allowFullscreen = true;
+            const player = isLocalVideo ? document.createElement('video') : document.createElement('iframe');
+            player.src = embed.dataset.src;
+            player.title = embed.dataset.title || 'Video TETRA';
+            if (isLocalVideo) {
+                player.controls = true;
+                player.preload = 'metadata';
+                player.playsInline = true;
+            } else {
+                player.loading = 'eager';
+                player.allow = 'autoplay; encrypted-media; fullscreen';
+                player.allowFullscreen = true;
+            }
 
             if (videoModalTitle) videoModalTitle.textContent = embed.dataset.title || 'Video TETRA';
-            videoModalFrame.replaceChildren(iframe);
+            videoModalFrame.classList.toggle('video-modal-frame-portrait', embed.dataset.ratio === 'portrait');
+            videoModalFrame.replaceChildren(player);
             videoModal.classList.add('active');
             videoModal.setAttribute('aria-hidden', 'false');
             body.style.overflow = 'hidden';
@@ -141,7 +161,7 @@
                 String(formData.get('brief')).trim()
             ];
             const message = encodeURIComponent(lines.join('\n'));
-            window.open(`https://wa.me/6285710004692?text=${message}`, '_blank', 'noopener');
+            window.open(`https://wa.me/6282283905473?text=${message}`, '_blank', 'noopener');
         });
     }
 })();
